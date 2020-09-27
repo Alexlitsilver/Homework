@@ -54,8 +54,9 @@ if (yandexButton!=undefined){ //Если найдена кнопка "поиск
     for(let i=0; i<links.length; i++){ //Идем по всем найденным ссылкам
         let link = links[i];
         if(link.href.indexOf(site) != -1){ //Если среди всех ссылок есть ссылка(сайт) из начально заданного условия(сайта)
+            links[i].removeAttribute('target'); //Удалим свойство таргет у ссылки, чтобы открылось в том же окне
             setTimeout(()=>link.click(),1500); //Кликаем по этой ссылке
-            flag=false;
+            flag=false; //Кликаем по этой ссылке
             break;
         }
     }
