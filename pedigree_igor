@@ -1,0 +1,46 @@
+<?
+header('Content-Type: text/html; charset=utf-8');
+class Person{
+  private $name;
+  private $lastname;
+  private $age;
+  private $mother;
+  private $father;
+  function __construct($name,$lastname,$age,$mother=null,$father=null){
+    $this->name = $name;
+    $this->lastname = $lastname;
+    $this->age = $age;
+    $this->mother = $mother;
+    $this->father = $father;
+  }
+	public function getName(){return $this->name;}
+	public function getLastname(){return $this->lastname;}
+	public function getAge(){return $this->age;}
+	public function getMother(){return $this->mother;}
+	public function getFather(){return $this->father;}
+	public function getInfo(){
+	  return "
+	    Меня зовут: ".$this->name."<br>
+	    Мне: ".$this->age. ' лет'."<br>
+	    Моя фамилия: ".$this->getFather()->lastname."<br>
+	    А мама раньше была: ".$this->getMother()->getMother()->getlastname()."<br>
+	    Мою маму зовут: ".$this->mother->name. ' она очень красивая и ей ' .$this->getMother()->age. ' лет'."<br>
+	    Моего папу зовут: ".$this->getFather()->getName()."<br>
+	    Папа очень сильный и ему: ".$this->getFather()->age. ' года'."<br> 
+	    Моего дедушку зовут: " .' дедушка '.$this->getFather()->getFather()->getName(). ' и деда ' .$this->getMother()->getFather()->getName()." <br>
+	    Мою бабушку зовут: бабушка ".$this->getFather()->getMother()->getName()." и бабушка " .$this->getMother()->getMother()->getName();
+
+	}
+}
+$anna = new Person("Анна","Петрова",63); // Мама Олега 
+$boris = new Person("Борис","Петров",64); // Папа Олега 
+
+$galina = new Person("Галина","Иванова",57); // Мама Ольги 
+$egor = new Person("Егор","Иванов",61); // Папа Ольги 
+
+$olga = new Person("Ольга","Петрова",40,$galina,$egor); //Мама
+$oleg = new Person("Олег","Петров",43,$anna,$boris); //Папа
+
+$igor = new Person("Игорь","Петров",12,$olga,$oleg); //Сын
+echo $igor->getInfo();
+?>
